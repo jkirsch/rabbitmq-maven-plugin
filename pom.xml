@@ -3,7 +3,7 @@
 
     <groupId>com.github.jkirsch</groupId>
     <artifactId>rabbitmq-maven-plugin</artifactId>
-    <version>0.1.2</version>
+    <version>0.1.3</version>
     <packaging>maven-plugin</packaging>
 
     <name>RabbitMQ Maven Plugin</name>
