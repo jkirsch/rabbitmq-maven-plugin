@@ -35,7 +35,7 @@ public class MacRabbitManager implements RabbitManager {
     @Override
     public void extractServer() throws MojoExecutionException {
         try {
-            String rabbitDownloadUrl = "https://www.rabbitmq.com/releases/rabbitmq-server/v" + RABBITMQ_VERSION + "/rabbitmq-server-mac-standalone-" + RABBITMQ_VERSION + ".tar.gz";
+            String rabbitDownloadUrl = "https://www.rabbitmq.com/releases/rabbitmq-server/v" + RABBITMQ_VERSION + "/rabbitmq-server-mac-standalone-" + RABBITMQ_VERSION + ".tar.xz";
             log.debug("Downloading rabbitmq from " + rabbitDownloadUrl);
             FileUtils.download(rabbitDownloadUrl, RABBITMQ_PARENT_DIR + File.separator + "rabbitmq-server-mac-standalone-" + RABBITMQ_VERSION + ".tar.xz");
             log.debug("Extracting downloaded files");
