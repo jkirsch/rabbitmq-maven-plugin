@@ -9,7 +9,7 @@ import java.io.File;
 public class RabbitMQConstants {
 
     public static final String RABBITMQ_DEFAULT_PORT = "5672";
-    public static final String RABBITMQ_VERSION = "3.6.6";
+    public static final String RABBITMQ_VERSION = "3.6.9";
     public static final String RABBITMQ_PARENT_DIR = SystemUtils.getUserHome() + File.separator + ".rabbitmq_maven_plugin";
     public static final String RABBITMQ_HOME = RABBITMQ_PARENT_DIR + File.separator + "rabbitmq_server-" + RABBITMQ_VERSION;
     public static final String ERLANG_HOME_WIN = System.getenv("ProgramFiles") + File.separator + "erl8.2";
