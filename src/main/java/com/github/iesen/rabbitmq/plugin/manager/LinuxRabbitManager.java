@@ -39,11 +39,11 @@ public class LinuxRabbitManager extends MacRabbitManager {
     public void extractServer() throws MojoExecutionException {
         try {
             String rabbitDownloadUrl = "https://www.rabbitmq.com/releases/rabbitmq-server/v" + RABBITMQ_VERSION +
-               "/rabbitmq-server-generic-unix-" + RABBITMQ_VERSION + ".tar.gz";
+               "/rabbitmq-server-generic-unix-" + RABBITMQ_VERSION + ".tar.xz";
             log.debug("Downloading rabbitmq from " + rabbitDownloadUrl);
-            FileUtils.download(rabbitDownloadUrl, RABBITMQ_PARENT_DIR + File.separator + "rabbitmq-server-mac-standalone-" + RABBITMQ_VERSION + ".tar.gz");
+            FileUtils.download(rabbitDownloadUrl, RABBITMQ_PARENT_DIR + File.separator + "rabbitmq-server-mac-standalone-" + RABBITMQ_VERSION + ".tar.xz");
             log.debug("Extracting downloaded files");
-            FileUtils.extractTarGzip(RABBITMQ_PARENT_DIR + File.separator + "rabbitmq-server-mac-standalone-" + RABBITMQ_VERSION + ".tar.gz", RABBITMQ_PARENT_DIR);
+            FileUtils.extractTarXz(RABBITMQ_PARENT_DIR + File.separator + "rabbitmq-server-mac-standalone-" + RABBITMQ_VERSION + ".tar.xz", RABBITMQ_PARENT_DIR);
             // Give permissions
             ProcessBuilder permissionProcess = new ProcessBuilder("/bin/chmod", "-R", "777", RABBITMQ_PARENT_DIR);
             log.debug("Permission command " + permissionProcess.command());

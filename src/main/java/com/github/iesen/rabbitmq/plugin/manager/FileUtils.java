@@ -5,6 +5,7 @@ import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
+import org.apache.commons.compress.compressors.xz.XZCompressorInputStream;
 
 import java.io.*;
 import java.net.URL;
@@ -26,6 +27,35 @@ public class FileUtils {
         try {
             GzipCompressorInputStream gzIn = new GzipCompressorInputStream(new BufferedInputStream(new FileInputStream(tarGzipFilePath), BUFFER));
             tarIn = new TarArchiveInputStream(gzIn);
+            // Read entries
+            TarArchiveEntry entry;
+            while ((entry = (TarArchiveEntry) tarIn.getNextEntry()) != null) {
+                if (entry.isDirectory()) {
+                    File f = new File(destPath + File.separator + entry.getName());
+                    f.mkdirs();
+                } else {
+                    int count;
+                    byte data[] = new byte[BUFFER];
+                    FileOutputStream fos = new FileOutputStream(destPath + File.separator + entry.getName());
+                    BufferedOutputStream destOut = new BufferedOutputStream(fos, BUFFER);
+                    while ((count = tarIn.read(data, 0, BUFFER)) != -1) {
+                        destOut.write(data, 0, count);
+                    }
+                    destOut.close();
+                }
+            }
+        } finally {
+            if (tarIn != null) {
+                tarIn.close();
+            }
+        }
+    }
+
+    public static void extractTarXz(String tarXzFilePath, String destPath) throws IOException {
+        TarArchiveInputStream tarIn = null;
+        try {
+            XZCompressorInputStream xzIn = new XZCompressorInputStream(new BufferedInputStream(new FileInputStream(tarXzFilePath), BUFFER));
+            tarIn = new TarArchiveInputStream(xzIn);
             // Read entries
             TarArchiveEntry entry;
             while ((entry = (TarArchiveEntry) tarIn.getNextEntry()) != null) {
